@@ -54,14 +54,17 @@ setGlobalOptions({ maxInstances: 10 });
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-exports.pubsub = onSchedule("5 11 * * *", async (event) => {
-    await axios.get('https://meowfacts.herokuapp.com/?count=3', {params})
-        .then(response => {
-            const apiResponse = response.data;
-            docRef.set({
-                current: apiResponse,
-            })
-        }).catch(error => {
-            console.log(error);
-        })
-})
+exports.pubsub = onSchedule("*/5 * * * *", async (event) => {
+    try {
+        const response = await axios.get('https://meowfacts.herokuapp.com/?count=3', {params});
+        const apiResponse = response.data;
+        await docRef.set({
+            current: apiResponse,
+        });
+        logger.info("Wrote cat facts to Firestore", {count: apiResponse?.data?.length || 0});
+        return null;
+    } catch (error) {
+        logger.error("Failed to fetch or write cat facts", {error});
+        return null;
+    }
+});
