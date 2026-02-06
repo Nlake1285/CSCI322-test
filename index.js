@@ -54,7 +54,7 @@ setGlobalOptions({ maxInstances: 10 });
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-exports.pubsub = onSchedule("*/5 * * * *", async (event) => {
+exports.pubsub = onSchedule("0 0 * * *", async (event) => {
     await axios.get('https://meowfacts.herokuapp.com/?count=3', {params})
         .then(response => {
             const apiResponse = response.data;
