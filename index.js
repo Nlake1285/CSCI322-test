@@ -55,16 +55,30 @@ setGlobalOptions({ maxInstances: 10 });
 //   response.send("Hello from Firebase!");
 // });
 exports.pubsub = onSchedule("*/5 * * * *", async (event) => {
-    try {
-        const response = await axios.get('https://meowfacts.herokuapp.com/?count=3', {params});
-        const apiResponse = response.data;
-        await docRef.set({
-            current: apiResponse,
-        });
-        logger.info("Wrote cat facts to Firestore", {count: apiResponse?.data?.length || 0});
-        return null;
-    } catch (error) {
-        logger.error("Failed to fetch or write cat facts", {error});
-        return null;
-    }
-});
+    await axios.get('https://meowfacts.herokuapp.com/?count=3', {params})
+        .then(response => {
+            const apiResponse = response.data;
+            logger.info("meowfacts payload", apiResponse);
+            return docRef.set({
+                current: apiResponse,
+            });
+        }).catch(error => {
+            console.log(error);
+        })
+})
+
+// Test function to make sure I'm not going crazy
+// exports.pubsubHttp = onRequest(async (req, res) => {
+//     try {
+//         const response = await axios.get('https://meowfacts.herokuapp.com/?count=3', {params});
+//         const apiResponse = response.data;
+//         logger.info("meowfacts payload", apiResponse);
+//         await docRef.set({
+//             current: apiResponse,
+//         });
+//         res.status(200).send({ ok: true, current: apiResponse });
+//     } catch (error) {
+//         logger.error("pubsubHttp error", error);
+//         res.status(500).send({ ok: false, error: "Failed to fetch or write data" });
+//     }
+// });
