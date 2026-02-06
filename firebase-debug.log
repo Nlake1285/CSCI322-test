@@ -1,0 +1,52 @@
+[debug] [2026-01-28T16:47:27.941Z] ----------------------------------------------------------------------
+[debug] [2026-01-28T16:47:27.948Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\CozyE\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2026-01-28T16:47:27.949Z] CLI Version:   15.4.0
+[debug] [2026-01-28T16:47:27.949Z] Platform:      win32
+[debug] [2026-01-28T16:47:27.949Z] Node Version:  v24.13.0
+[debug] [2026-01-28T16:47:27.950Z] Time:          Wed Jan 28 2026 09:47:27 GMT-0700 (Mountain Standard Time)
+[debug] [2026-01-28T16:47:27.950Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\CozyE
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-01-28T16:47:39.632Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-28T16:47:39.633Z] > authorizing via signed-in user (mr.skelly1285@gmail.com)
+[debug] [2026-01-28T16:47:39.637Z] Checked if tokens are valid: true, expires at: 1769622210019
+[debug] [2026-01-28T16:47:39.637Z] Checked if tokens are valid: true, expires at: 1769622210019
+[debug] [2026-01-28T16:47:39.641Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/test-71bfc [none]
+[debug] [2026-01-28T16:47:39.960Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/test-71bfc 200
+[debug] [2026-01-28T16:47:39.960Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/test-71bfc {"projectId":"test-71bfc","projectNumber":"782830698347","displayName":"test","name":"projects/test-71bfc","resources":{"hostingSite":"test-71bfc"},"state":"ACTIVE","etag":"1_186b90c7-d6a2-454a-bba6-1a28e0586c03"}
+[info] i  Using project test-71bfc (test) . 
+[info] 
+=== Functions Setup
+[debug] [2026-01-28T16:47:39.995Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-28T16:47:39.996Z] > authorizing via signed-in user (mr.skelly1285@gmail.com)
+[debug] [2026-01-28T16:47:39.996Z] [iam] checking project test-71bfc for permissions ["firebase.projects.get"]
+[debug] [2026-01-28T16:47:39.997Z] Checked if tokens are valid: true, expires at: 1769622210019
+[debug] [2026-01-28T16:47:39.997Z] Checked if tokens are valid: true, expires at: 1769622210019
+[debug] [2026-01-28T16:47:39.997Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/test-71bfc:testIamPermissions [none]
+[debug] [2026-01-28T16:47:39.997Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/test-71bfc:testIamPermissions x-goog-quota-user=projects/test-71bfc
+[debug] [2026-01-28T16:47:39.997Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/test-71bfc:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2026-01-28T16:47:40.103Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/test-71bfc:testIamPermissions 200
+[debug] [2026-01-28T16:47:40.103Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/test-71bfc:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+Detected existing codebase(s): default
+
