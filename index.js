@@ -1,3 +1,4 @@
+require('dotenv').config();
 /**
  * Import function triggers from their respective submodules:
  *
@@ -13,11 +14,26 @@ const {onRequest} = require("firebase-functions/https");
 const {onDocumentCreated} = require("firebase-functions/v2/firestore");
 const logger = require("firebase-functions/logger");
 
+const { onSchedule } = require("firebase-functions/v2/scheduler");
+const axios = require('axios');
+const params = {};
+
 // The Firebase Admin SDK to access Firestore.
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
 
-initializeApp();
+const firebaseConfig = {
+    apikey: process.env.APIKEY,
+    authDomain: process.env.AUTHDOMAIN,
+    projectId: process.env.PROJECTID,
+    storageBucket: process.env.STORAGEBUCKET,
+    messagingSenderId: process.env.MESSAGINGSENDERID,
+    appId: process.env.APPID
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const docRef = db.collection('Facts').doc('Cat');
 
 // For cost control, you can set the maximum number of containers that can be
 // running at the same time. This helps mitigate the impact of unexpected
@@ -38,3 +54,14 @@ setGlobalOptions({ maxInstances: 10 });
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+exports.pubsub = onSchedule("5 11 * * *", async (event) => {
+    await axios.get('https://meowfacts.herokuapp.com/?count=3', {params})
+        .then(response => {
+            const apiResponse = response.data;
+            docRef.set({
+                current: apiResponse,
+            })
+        }).catch(error => {
+            console.log(error);
+        })
+})
